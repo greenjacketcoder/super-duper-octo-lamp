@@ -1,0 +1,85 @@
+######################################################
+#                Chart Collections                   #
+######################################################
+templates:
+  Chart:
+    sort_title: +1_<<num>><<collection_name>>
+    sync_mode: sync
+    smart_label: random
+  Best of:
+    trakt_list: https://trakt.tv/users/lish408/lists/rotten-tomatoes-best-of-<<year>>
+    sort_title: +1_Best of <<year>>
+    sync_mode: sync
+    summary: Rotten Tomatoes Best Movies of <<year>>
+    smart_label: audience_rating.desc
+  Oscars:
+        trakt_list: https://trakt.tv/users/pjcob/lists/<<year>>-oscars
+        sort_title: '*Oscars <<year>>'
+        sync_mode: sync
+        summary: Academy Awards (Oscars) for <<year>>
+        smart_label: audience_rating.desc
+  imdb:
+    summary: <<summary>>
+    sync_mode: sync
+collections:
+  Trending Movies  :
+    template: { name: Chart, num: 2 }
+    trakt_trending: 10
+    tmdb_trending_daily: 10
+    tmdb_trending_weekly: 10
+    summary: Movies Trending now
+  Popular Movies:
+    template: { name: Chart, num: 3 }
+    tmdb_popular: 40
+    imdb_list:
+      url: https://www.imdb.com/search/title/?title_type=feature,tv_movie,documentary,short
+      limit: 40
+    summary: Popular Movies now
+  Oscars Best Picture Winners:
+    sort_title: 'Oscars Best Picture Winners'
+    trakt_list: https://trakt.tv/users/pjcob/lists/1970-2021-oscars-best-picture-winners?sort=rank,asc
+  Marvel Cinematic Universe:
+    imdb_list: https://www.imdb.com/list/ls000024621/
+    summary: A collection of all MCU movies.
+    sort_title: 'MCU'
+    collection_order: release
+    collection_mode: default
+  DC Extended Universe:
+    template: {name: imdb, summary: "The DC Extended Universe (DCEU) is an American media franchise and shared universe centered on a series of superhero films based on characters that appeared in American comic books by DC Comics.", poster: https://theposterdb.com/api/assets/79223}
+    imdb_list: https://www.imdb.com/list/ls021326258/
+  Pixar Movies:
+    sort_title: 'Pixar Movies'
+    trakt_list: https://trakt.tv/users/pelezi/lists/pixar-movies-and-shorts?sort=released,asc
+  Disney Movies:
+    imdb_list: https://www.imdb.com/search/title/?companies=co0074039
+    summary: A collection of all Disney movies.
+    sort_title: 'Disney Movies'
+    collection_order: release
+    collection_mode: default
+  A24 Movies:
+    sort_title: 'A24'
+    trakt_list: https://trakt.tv/users/fidel-cb/lists/a24-movies-and-tv-shows?sort=released,asc
+  IMDB Top 250:
+    imdb_list: https://www.imdb.com/search/title/?groups=top_250&count=250&sort=user_rating,desc
+    summary: Movies that are in IMDB's Top 250 Movies of all time list
+    sort_title: 'IMDB'
+    collection_order: release
+    collection_mode: default
+  Heist Movies:
+    imdb_list:
+      - https://www.imdb.com/list/ls068224634/
+      - https://www.imdb.com/list/ls009794682/
+    summary: Movies detailing the preparation for, execution of and aftermath of a (well-)planned and often daring heist.
+    sort_title: 'Heist'
+    collection_order: alpha
+    collection_mode: default
+  Based on True Events:
+    smart_label: originally_available.desc
+    imdb_list: https://www.imdb.com/search/title/?keywords=based-on-true-story&sort=moviemeter&user_rating=5.0,10.0&num_votes=10000,&title_type=feature
+    plex_search:
+      genre: 
+        - Biography
+        - History
+      genre.not: 
+        - Animation
+        - Documentary
